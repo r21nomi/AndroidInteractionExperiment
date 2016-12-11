@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment.view;
+package com.r21nomi.androidinteractionexperiment.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment.shared_element_transition;
+package com.r21nomi.androidinteractionexperiment.shared_element_transition;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.r21nomi.androidanimationexperiment.R;
-import com.r21nomi.androidanimationexperiment.ResourceUtil;
-import com.r21nomi.androidanimationexperiment.shared_element_transition.detail.SharedElementTransitionDetailActivity;
+import com.r21nomi.androidinteractionexperiment.R;
+import com.r21nomi.androidinteractionexperiment.ResourceUtil;
+import com.r21nomi.androidinteractionexperiment.shared_element_transition.detail.SharedElementTransitionDetailActivity;
 
 import java.util.Arrays;
 import java.util.List;

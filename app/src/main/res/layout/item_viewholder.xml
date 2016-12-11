@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:padding="16dp">
 
-    <com.r21nomi.androidanimationexperiment.view.SquareImageView
+    <com.r21nomi.androidinteractionexperiment.view.SquareImageView
         android:id="@+id/thumb"
         android:layout_width="48dp"
         android:layout_height="48dp" />

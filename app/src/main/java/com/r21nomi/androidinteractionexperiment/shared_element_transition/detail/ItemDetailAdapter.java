@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment.shared_element_transition.detail;
+package com.r21nomi.androidinteractionexperiment.shared_element_transition.detail;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.r21nomi.androidanimationexperiment.R;
-import com.r21nomi.androidanimationexperiment.WindowUtil;
-import com.r21nomi.androidanimationexperiment.shared_element_transition.Item;
+import com.r21nomi.androidinteractionexperiment.R;
+import com.r21nomi.androidinteractionexperiment.WindowUtil;
+import com.r21nomi.androidinteractionexperiment.shared_element_transition.Item;
 
 import java.util.List;
 

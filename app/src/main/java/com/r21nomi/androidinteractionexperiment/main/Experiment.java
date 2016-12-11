@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment.main;
+package com.r21nomi.androidinteractionexperiment.main;
 
 /**
  * Created by r21nomi on 2016/12/11.

@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment.transition;
+package com.r21nomi.androidinteractionexperiment.transition;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.github.r21nomi.androidrpinterpolator.Easing;
 import com.github.r21nomi.androidrpinterpolator.RPInterpolator;
-import com.r21nomi.androidanimationexperiment.R;
+import com.r21nomi.androidinteractionexperiment.R;
 
 import static android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM;
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;

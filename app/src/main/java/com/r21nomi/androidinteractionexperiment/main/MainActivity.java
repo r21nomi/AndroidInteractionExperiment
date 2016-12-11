@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment.main;
+package com.r21nomi.androidinteractionexperiment.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.r21nomi.androidanimationexperiment.R;
-import com.r21nomi.androidanimationexperiment.shared_element_transition.SharedElementTransitionActivity;
-import com.r21nomi.androidanimationexperiment.transition.TransitionActivity;
+import com.r21nomi.androidinteractionexperiment.R;
+import com.r21nomi.androidinteractionexperiment.shared_element_transition.SharedElementTransitionActivity;
+import com.r21nomi.androidinteractionexperiment.transition.TransitionActivity;
 
 import java.util.Arrays;
 import java.util.List;

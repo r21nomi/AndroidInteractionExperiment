@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment;
+package com.r21nomi.androidinteractionexperiment;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

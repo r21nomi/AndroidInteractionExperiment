@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment.shared_element_transition;
+package com.r21nomi.androidinteractionexperiment.shared_element_transition;
 
 import android.animation.TimeInterpolator;
 import android.annotation.TargetApi;
