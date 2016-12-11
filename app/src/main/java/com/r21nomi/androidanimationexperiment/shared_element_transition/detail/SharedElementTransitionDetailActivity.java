@@ -1,4 +1,4 @@
-package com.r21nomi.androidanimationexperiment.shared_element_transition;
+package com.r21nomi.androidanimationexperiment.shared_element_transition.detail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,18 +10,21 @@ import android.support.v7.widget.RecyclerView;
 
 import com.r21nomi.androidanimationexperiment.DeviceUtil;
 import com.r21nomi.androidanimationexperiment.R;
+import com.r21nomi.androidanimationexperiment.ResourceUtil;
+import com.r21nomi.androidanimationexperiment.shared_element_transition.CustomTransitionSet;
+import com.r21nomi.androidanimationexperiment.shared_element_transition.Item;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class SharedElementTransitionDetailActivity extends AppCompatActivity {
 
     private static final String TRANSITION_NAME = "transition_name";
+    private static final String URI = "uri";
 
     private RecyclerView mRecyclerView;
 
-    private ItemAdapter.Listener mListener = new ItemAdapter.Listener() {
+    private ItemDetailAdapter.Listener mListener = new ItemDetailAdapter.Listener() {
         @Override
         public void onThumbClicked(Uri uri) {
             // no-op
@@ -40,9 +43,10 @@ public class SharedElementTransitionDetailActivity extends AppCompatActivity {
         }
     };
 
-    public static Intent createIntent(Context context, String transitionName) {
+    public static Intent createIntent(Context context, String transitionName, Uri sharedElementUri) {
         Intent intent = new Intent(context, SharedElementTransitionDetailActivity.class);
         intent.putExtra(TRANSITION_NAME, transitionName);
+        intent.putExtra(URI, sharedElementUri);
         return intent;
     }
 
@@ -58,14 +62,8 @@ public class SharedElementTransitionDetailActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        Uri thumbUri = Uri.parse(String.format(Locale.US,
-                "android.resource://%s/%d",
-                getPackageName(),
-                R.drawable.img1
-        ));
-
-        ItemAdapter adapter = new ItemAdapter(
-                thumbUri,
+        ItemDetailAdapter adapter = new ItemDetailAdapter(
+                (Uri) getIntent().getParcelableExtra(URI),
                 getDataSet(),
                 getIntent().getStringExtra(TRANSITION_NAME)
         );
@@ -78,7 +76,7 @@ public class SharedElementTransitionDetailActivity extends AppCompatActivity {
     private List<Item> getDataSet() {
         List<Item> dataSet = new ArrayList<>();
         for (int i = 0, len = 15; i < len; i++) {
-            dataSet.add(new Item("Item" + i, "description" + i));
+            dataSet.add(new Item("Item" + i, "description" + i, ResourceUtil.getDrawableAsUri(this, R.drawable.img1)));
         }
         return dataSet;
     }

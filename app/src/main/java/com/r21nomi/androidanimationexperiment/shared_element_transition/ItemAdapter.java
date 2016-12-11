@@ -1,20 +1,14 @@
 package com.r21nomi.androidanimationexperiment.shared_element_transition;
 
-import android.content.Context;
-import android.net.Uri;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.r21nomi.androidanimationexperiment.R;
-import com.r21nomi.androidanimationexperiment.WindowUtil;
 
 import java.util.List;
 
@@ -22,203 +16,61 @@ import java.util.List;
  * Created by r21nomi on 2016/12/11.
  */
 
-public class ItemAdapter extends RecyclerView.Adapter {
+class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
-    private Uri mThumbUri;
-    private List<Item> mItemDataSet;
-    private Listener mListener;
-    private final String mTransitionName;
+    private List<Item> dataSet;
+    private Listener listener;
 
-    enum Type {
-        THUMB(0),
-        ITEM(1);
-
-        int id;
-
-        Type(int id) {
-            this.id = id;
-        }
-
-        static Type getType(int id) {
-            for (Type type : Type.values()) {
-                if (type.id == id) {
-                    return type;
-                }
-            }
-            return ITEM;
-        }
-
-        int getItemCount(ItemAdapter bookAdapter) {
-            switch (this) {
-                case THUMB:
-                    return 1;
-
-                default:
-                    return bookAdapter.mItemDataSet.size();
-            }
-        }
-    }
-
-    public ItemAdapter(Uri uri, List<Item> itemDataSet, String transitionName) {
-        mThumbUri = uri;
-        mItemDataSet = itemDataSet;
-        mTransitionName = transitionName;
+    ItemAdapter(List<Item> dataSet, Listener listener) {
+        this.dataSet = dataSet;
+        this.listener = listener;
     }
 
     @Override
     public int getItemCount() {
-        return 1 + mItemDataSet.size();
+        return dataSet.size();
     }
 
     @Override
-    public int getItemViewType(int position) {
-        int itemCount = 0;
-
-        for (int i = 0; i < Type.values().length; i++) {
-            Type type = Type.getType(i);
-
-            itemCount += type.getItemCount(this);
-
-            if (position < itemCount) {
-                return type.id;
-            }
-        }
-        return -1;
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_viewholder, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (Type.getType(viewType)) {
-            case THUMB: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.detail_image_viewholder, parent, false);
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final Item item = dataSet.get(position);
+        holder.title.setText(item.getTitle());
+        holder.description.setText(item.getDescription());
 
-                final ThumbViewHolder vh = new ThumbViewHolder(view);
-                ViewCompat.setTransitionName(vh.thumb, mTransitionName);
-                vh.thumb.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public boolean onPreDraw() {
-                        Log.d(ItemAdapter.class.getCanonicalName(), "onPreDraw");
-                        mListener.onStartPostponedEnterTransition();
-                        vh.thumb.getViewTreeObserver().removeOnPreDrawListener(this);
-                        return false;
-                    }
-                });
-                return vh;
-            }
-            default: {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_viewholder, parent, false);
-                return new ItemViewHolder(view);
-            }
-        }
-    }
+        Glide.with(holder.itemView.getContext())
+                .load(item.getThumb())
+                .into(holder.thumb);
 
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ThumbViewHolder) {
-            Log.d(ItemAdapter.class.getCanonicalName(), "ThumbViewHolder onBindViewHolder");
-            final ThumbViewHolder vh = (ThumbViewHolder) holder;
-            final Context context = vh.thumb.getContext();
-
-            int windowWidth = WindowUtil.getWidth(context);
-            ViewGroup.LayoutParams params = vh.thumb.getLayoutParams();
-            params.width = windowWidth;
-            params.height = windowWidth;
-            vh.thumb.setLayoutParams(params);
-
-            int pos = getPosition(Type.THUMB, position);
-
-            Glide.with(context)
-                    .load(mThumbUri)
-                    .into(vh.thumb);
-
-            setOnClickListener(holder, Type.THUMB, pos);
-
-        } else {
-            final ItemViewHolder vh = (ItemViewHolder) holder;
-            int pos = getPosition(Type.ITEM, position);
-            Item item = mItemDataSet.get(pos);
-
-            vh.title.setText(item.getTitle());
-            vh.description.setText(item.getDescription());
-
-            setOnClickListener(holder, Type.ITEM, pos);
-        }
-    }
-
-    public ItemAdapter setListener(Listener listener) {
-        mListener = listener;
-        return this;
-    }
-
-    private int getPosition(Type type, int position) {
-        int total = 0;
-
-        for (int i = 0; i < type.id; i++) {
-            Type t = Type.getType(i);
-
-            switch (t) {
-                case THUMB:
-                    total += 1;
-                    break;
-
-                default:
-                    total += mItemDataSet.size();
-                    break;
-            }
-        }
-
-        return position - total;
-    }
-
-    private void setOnClickListener(RecyclerView.ViewHolder viewHolder,
-                                    final Type type,
-                                    final int position) {
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (mListener == null) {
-                    return;
-                }
-                switch (type) {
-                    case THUMB:
-                        mListener.onThumbClicked(mThumbUri);
-                        break;
-
-                    default:
-                        mListener.onItemClicked(mItemDataSet.get(position));
-                        break;
-                }
+            public void onClick(View view) {
+                listener.onClick(holder.thumb, item);
             }
         });
     }
 
-    public static class ThumbViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView thumb;
-
-        public ThumbViewHolder(View itemView) {
-            super(itemView);
-
-            thumb = (ImageView) itemView.findViewById(R.id.image);
-        }
-    }
-
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView description;
 
-        public ItemViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
 
+            thumb = (ImageView) itemView.findViewById(R.id.thumb);
             title = (TextView) itemView.findViewById(R.id.title);
             description = (TextView) itemView.findViewById(R.id.description);
         }
     }
 
     interface Listener {
-        void onThumbClicked(Uri uri);
-
-        void onItemClicked(Item item);
-
-        void onStartPostponedEnterTransition();
+        void onClick(View view, Item item);
     }
 }
+

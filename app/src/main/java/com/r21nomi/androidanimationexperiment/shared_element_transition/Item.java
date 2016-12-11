@@ -1,5 +1,7 @@
 package com.r21nomi.androidanimationexperiment.shared_element_transition;
 
+import android.net.Uri;
+
 /**
  * Created by r21nomi on 2016/12/11.
  */
@@ -7,10 +9,12 @@ package com.r21nomi.androidanimationexperiment.shared_element_transition;
 public class Item {
     private String title;
     private String description;
+    private Uri thumb;
 
-    public Item(String title, String description) {
+    public Item(String title, String description, Uri thumb) {
         this.title = title;
         this.description = description;
+        this.thumb = thumb;
     }
 
     public String getTitle() {
@@ -19,5 +23,9 @@ public class Item {
 
     public String getDescription() {
         return description;
+    }
+
+    public Uri getThumb() {
+        return thumb;
     }
 }
