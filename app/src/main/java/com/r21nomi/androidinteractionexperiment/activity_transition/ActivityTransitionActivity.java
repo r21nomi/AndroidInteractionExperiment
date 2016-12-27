@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment.shared_element_transition_manual;
+package com.r21nomi.androidinteractionexperiment.activity_transition;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,19 +10,17 @@ import android.view.View;
 
 import com.r21nomi.androidinteractionexperiment.R;
 import com.r21nomi.androidinteractionexperiment.ResourceUtil;
-import com.r21nomi.androidinteractionexperiment.shared_element_transition.Item;
-import com.r21nomi.androidinteractionexperiment.shared_element_transition.ItemAdapter;
-import com.r21nomi.androidinteractionexperiment.shared_element_transition_manual.detail.SharedElementTransitionManualDetailActivity;
+import com.r21nomi.androidinteractionexperiment.activity_transition.detail.ActivityTransitionDetailActivity;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class SharedElementTransitionManualActivity extends AppCompatActivity {
+public class ActivityTransitionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shared_element_transition_manual);
+        setContentView(R.layout.activity_transition);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ItemAdapter adapter = new ItemAdapter(getDataSet(), new ItemAdapter.Listener() {
@@ -36,11 +34,12 @@ public class SharedElementTransitionManualActivity extends AppCompatActivity {
     }
 
     private void startDetail(View thumbView, Item item) {
-        Intent intent = SharedElementTransitionManualDetailActivity.createIntent(this, thumbView, item.getThumb());
+        String transitionName = "image";
+        Intent intent = ActivityTransitionDetailActivity.createIntent(this, transitionName, item.getThumb());
         Bundle options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 thumbView,
-                ""
+                transitionName
         ).toBundle();
         startActivity(intent, options);
     }

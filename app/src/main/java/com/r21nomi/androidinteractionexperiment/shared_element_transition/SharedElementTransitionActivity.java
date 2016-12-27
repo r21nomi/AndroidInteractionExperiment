@@ -10,6 +10,8 @@ import android.view.View;
 
 import com.r21nomi.androidinteractionexperiment.R;
 import com.r21nomi.androidinteractionexperiment.ResourceUtil;
+import com.r21nomi.androidinteractionexperiment.activity_transition.Item;
+import com.r21nomi.androidinteractionexperiment.activity_transition.ItemAdapter;
 import com.r21nomi.androidinteractionexperiment.shared_element_transition.detail.SharedElementTransitionDetailActivity;
 
 import java.util.Arrays;
@@ -20,7 +22,7 @@ public class SharedElementTransitionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shared_element);
+        setContentView(R.layout.activity_shared_element_transition);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ItemAdapter adapter = new ItemAdapter(getDataSet(), new ItemAdapter.Listener() {
@@ -34,12 +36,11 @@ public class SharedElementTransitionActivity extends AppCompatActivity {
     }
 
     private void startDetail(View thumbView, Item item) {
-        String transitionName = "image";
-        Intent intent = SharedElementTransitionDetailActivity.createIntent(this, transitionName, item.getThumb());
+        Intent intent = SharedElementTransitionDetailActivity.createIntent(this, thumbView, item.getThumb());
         Bundle options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 thumbView,
-                transitionName
+                ""
         ).toBundle();
         startActivity(intent, options);
     }

@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment.shared_element_transition;
+package com.r21nomi.androidinteractionexperiment.activity_transition;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

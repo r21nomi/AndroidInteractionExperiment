@@ -29,7 +29,7 @@ public class TransitionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transition);
+        setContentView(R.layout.activity_simple_transition);
 
         sceneRoot = (ViewGroup) findViewById(R.id.root);
         animationView = findViewById(R.id.animationButton1);

@@ -2,20 +2,18 @@ package com.r21nomi.androidinteractionexperiment.shared_element_transition.detai
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.r21nomi.androidinteractionexperiment.R;
 import com.r21nomi.androidinteractionexperiment.WindowUtil;
-import com.r21nomi.androidinteractionexperiment.shared_element_transition.Item;
+import com.r21nomi.androidinteractionexperiment.activity_transition.Item;
 
 import java.util.List;
 
@@ -25,10 +23,9 @@ import java.util.List;
 
 public class ItemDetailAdapter extends RecyclerView.Adapter {
 
-    private Uri mThumbUri;
+    private HeaderThumb mHeaderThumb;
     private List<Item> mItemDataSet;
     private Listener mListener;
-    private final String mTransitionName;
 
     enum Type {
         THUMB(0),
@@ -60,10 +57,9 @@ public class ItemDetailAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public ItemDetailAdapter(Uri uri, List<Item> itemDataSet, String transitionName) {
-        mThumbUri = uri;
+    public ItemDetailAdapter(HeaderThumb headerThumb, List<Item> itemDataSet) {
+        mHeaderThumb = headerThumb;
         mItemDataSet = itemDataSet;
-        mTransitionName = transitionName;
     }
 
     @Override
@@ -92,18 +88,8 @@ public class ItemDetailAdapter extends RecyclerView.Adapter {
         switch (Type.getType(viewType)) {
             case THUMB: {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.detail_image_viewholder, parent, false);
-
-                final ThumbViewHolder vh = new ThumbViewHolder(view);
-                ViewCompat.setTransitionName(vh.thumb, mTransitionName);
-                vh.thumb.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public boolean onPreDraw() {
-                        Log.d(ItemDetailAdapter.class.getCanonicalName(), "onPreDraw");
-                        mListener.onStartPostponedEnterTransition();
-                        vh.thumb.getViewTreeObserver().removeOnPreDrawListener(this);
-                        return false;
-                    }
-                });
+                ThumbViewHolder vh = new ThumbViewHolder(view);
+                vh.thumb.setVisibility(View.INVISIBLE);
                 return vh;
             }
             default: {
@@ -129,9 +115,12 @@ public class ItemDetailAdapter extends RecyclerView.Adapter {
 
             int pos = getPosition(Type.THUMB, position);
 
-            Glide.with(context)
-                    .load(mThumbUri)
-                    .into(vh.thumb);
+            if (mHeaderThumb.isVisible()) {
+                vh.thumb.setVisibility(View.VISIBLE);
+                Glide.with(context)
+                        .load(mHeaderThumb.getUri())
+                        .into(vh.thumb);
+            }
 
             setOnClickListener(holder, Type.THUMB, pos);
 
@@ -187,7 +176,7 @@ public class ItemDetailAdapter extends RecyclerView.Adapter {
                 }
                 switch (type) {
                     case THUMB:
-                        mListener.onThumbClicked(mThumbUri);
+                        mListener.onThumbClicked(mHeaderThumb.getUri());
                         break;
 
                     default:

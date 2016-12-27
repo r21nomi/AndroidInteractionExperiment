@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment.shared_element_transition_manual.detail;
+package com.r21nomi.androidinteractionexperiment.shared_element_transition.detail;
 
 import android.net.Uri;
 
