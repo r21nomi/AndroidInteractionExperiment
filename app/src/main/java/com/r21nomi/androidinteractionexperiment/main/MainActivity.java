@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.r21nomi.androidinteractionexperiment.R;
 import com.r21nomi.androidinteractionexperiment.shared_element_transition.SharedElementTransitionActivity;
+import com.r21nomi.androidinteractionexperiment.shared_element_transition_manual.SharedElementTransitionManualActivity;
 import com.r21nomi.androidinteractionexperiment.transition.TransitionActivity;
 
 import java.util.Arrays;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<Experiment> dataSet = Arrays.asList(
                 new Experiment("SharedElementTransition", SharedElementTransitionActivity.class),
+                new Experiment("SharedElementTransitionManual", SharedElementTransitionManualActivity.class),
                 new Experiment("Transition", TransitionActivity.class)
         );
 

@@ -8,16 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.r21nomi.androidinteractionexperiment.main.MainActivity">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.r21nomi.androidinteractionexperiment.shared_element_transition.SharedElementTransitionActivity" />
-        <activity android:name="com.r21nomi.androidinteractionexperiment.shared_element_transition.detail.SharedElementTransitionDetailActivity" />
-        <activity android:name="com.r21nomi.androidinteractionexperiment.transition.TransitionActivity"></activity>
+        <activity android:name=".shared_element_transition.SharedElementTransitionActivity" />
+        <activity android:name=".shared_element_transition.detail.SharedElementTransitionDetailActivity" />
+        <activity android:name=".transition.TransitionActivity" />
+        <activity android:name=".shared_element_transition_manual.SharedElementTransitionManualActivity" />
+        <activity android:name=".shared_element_transition_manual.detail.SharedElementTransitionManualDetailActivity" />
     </application>
 
 </manifest>

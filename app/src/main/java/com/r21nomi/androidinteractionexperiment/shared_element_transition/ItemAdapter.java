@@ -16,12 +16,12 @@ import java.util.List;
  * Created by r21nomi on 2016/12/11.
  */
 
-class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     private List<Item> dataSet;
     private Listener listener;
 
-    ItemAdapter(List<Item> dataSet, Listener listener) {
+    public ItemAdapter(List<Item> dataSet, Listener listener) {
         this.dataSet = dataSet;
         this.listener = listener;
     }
@@ -69,7 +69,7 @@ class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         }
     }
 
-    interface Listener {
+    public interface Listener {
         void onClick(View view, Item item);
     }
 }
