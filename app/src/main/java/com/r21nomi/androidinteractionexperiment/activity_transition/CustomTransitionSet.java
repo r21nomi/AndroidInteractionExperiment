@@ -12,7 +12,7 @@ import com.github.r21nomi.androidrpinterpolator.RPInterpolator;
 /**
  * Created by Ryota Niinomi on 2016/11/19.
  */
-@TargetApi(Build.VERSION_CODES.KITKAT)
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class CustomTransitionSet extends TransitionSet {
     public CustomTransitionSet() {
         addTransition(new ChangeBounds().setInterpolator(getInterpolator()));

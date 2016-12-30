@@ -28,7 +28,7 @@ public class ItemDetailAdapter extends RecyclerView.Adapter {
     private Uri mThumbUri;
     private List<Item> mItemDataSet;
     private Listener mListener;
-    private final String mTransitionName;
+    private final String mSharedElementViewName;
 
     enum Type {
         THUMB(0),
@@ -60,10 +60,10 @@ public class ItemDetailAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public ItemDetailAdapter(Uri uri, List<Item> itemDataSet, String transitionName) {
+    public ItemDetailAdapter(Uri uri, List<Item> itemDataSet, String sharedElementViewName) {
         mThumbUri = uri;
         mItemDataSet = itemDataSet;
-        mTransitionName = transitionName;
+        mSharedElementViewName = sharedElementViewName;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class ItemDetailAdapter extends RecyclerView.Adapter {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.detail_image_viewholder, parent, false);
 
                 final ThumbViewHolder vh = new ThumbViewHolder(view);
-                ViewCompat.setTransitionName(vh.thumb, mTransitionName);
+                ViewCompat.setTransitionName(vh.thumb, mSharedElementViewName);
                 vh.thumb.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                     @Override
                     public boolean onPreDraw() {
