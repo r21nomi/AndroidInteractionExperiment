@@ -1,18 +1,23 @@
 package com.r21nomi.androidinteractionexperiment.activity_transition;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.r21nomi.androidinteractionexperiment.R;
-import com.r21nomi.androidinteractionexperiment.base.ResourceUtil;
 import com.r21nomi.androidinteractionexperiment.activity_transition.detail.ActivityTransitionDetailActivity;
 import com.r21nomi.androidinteractionexperiment.base.Item;
+import com.r21nomi.androidinteractionexperiment.base.ResourceUtil;
+import com.r21nomi.androidinteractionexperiment.base.view.ViewUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,13 +47,30 @@ public class ActivityTransitionActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void startDetail(View thumbView, Item item) {
         String sharedElementViewName = "shared_element_view";
         Intent intent = ActivityTransitionDetailActivity.createIntent(this, sharedElementViewName, item.getThumb());
+
+        View statusBar = findViewById(android.R.id.statusBarBackground);
+        View navigationBar = findViewById(android.R.id.navigationBarBackground);
+        View actionBar = ViewUtil.getActionBar(this);
+
+        List<Pair<View, String>> pairs = new ArrayList<>();
+        if (statusBar != null) {
+            pairs.add(Pair.create(statusBar, statusBar.getTransitionName()));
+        }
+        if (navigationBar != null) {
+            pairs.add(Pair.create(navigationBar, navigationBar.getTransitionName()));
+        }
+        if (actionBar != null) {
+            pairs.add(Pair.create(actionBar, actionBar.getTransitionName()));
+        }
+        pairs.add(Pair.create(thumbView, sharedElementViewName));
+
         Bundle options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
-                thumbView,
-                sharedElementViewName
+                pairs.toArray(new Pair[pairs.size()])
         ).toBundle();
         startActivity(intent, options);
     }

@@ -10,11 +10,12 @@ import android.support.v7.widget.RecyclerView;
 import android.transition.Transition;
 import android.util.Log;
 
-import com.r21nomi.androidinteractionexperiment.base.DeviceUtil;
 import com.r21nomi.androidinteractionexperiment.R;
-import com.r21nomi.androidinteractionexperiment.base.ResourceUtil;
 import com.r21nomi.androidinteractionexperiment.activity_transition.CustomTransitionSet;
+import com.r21nomi.androidinteractionexperiment.base.DeviceUtil;
 import com.r21nomi.androidinteractionexperiment.base.Item;
+import com.r21nomi.androidinteractionexperiment.base.ResourceUtil;
+import com.r21nomi.androidinteractionexperiment.base.view.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,9 @@ public class ActivityTransitionDetailActivity extends AppCompatActivity {
         if (DeviceUtil.isOverLollipop()) {
             postponeEnterTransition();
             getWindow().setSharedElementEnterTransition(new CustomTransitionSet());
+
+            // Set transition name to ActionBar.
+            ViewUtil.getActionBar(this);
 
             getWindow()
                     .getSharedElementEnterTransition()
