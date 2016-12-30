@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment.activity_transition;
+package com.r21nomi.androidinteractionexperiment.base;
 
 import android.net.Uri;
 

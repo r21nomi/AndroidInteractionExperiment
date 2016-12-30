@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.r21nomi.androidinteractionexperiment.R;
-import com.r21nomi.androidinteractionexperiment.ResourceUtil;
-import com.r21nomi.androidinteractionexperiment.activity_transition.Item;
-import com.r21nomi.androidinteractionexperiment.activity_transition.ItemAdapter;
+import com.r21nomi.androidinteractionexperiment.base.ResourceUtil;
+import com.r21nomi.androidinteractionexperiment.base.Item;
+import com.r21nomi.androidinteractionexperiment.base.ItemAdapter;
 import com.r21nomi.androidinteractionexperiment.shared_element_transition.detail.SharedElementTransitionDetailActivity;
 
 import java.util.Arrays;

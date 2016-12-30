@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment.evaluator;
+package com.r21nomi.androidinteractionexperiment.base.evaluator;
 
 import android.animation.IntEvaluator;
 import android.view.View;

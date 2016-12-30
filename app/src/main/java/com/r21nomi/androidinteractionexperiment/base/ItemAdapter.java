@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment.activity_transition;
+package com.r21nomi.androidinteractionexperiment.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.r21nomi.androidinteractionexperiment.R;
-import com.r21nomi.androidinteractionexperiment.base.Item;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_viewholder, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_viewholder, parent, false);
         return new ViewHolder(view);
     }
 

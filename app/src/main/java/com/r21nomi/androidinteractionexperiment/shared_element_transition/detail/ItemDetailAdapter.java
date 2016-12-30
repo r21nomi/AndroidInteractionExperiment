@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.r21nomi.androidinteractionexperiment.R;
-import com.r21nomi.androidinteractionexperiment.WindowUtil;
-import com.r21nomi.androidinteractionexperiment.activity_transition.Item;
+import com.r21nomi.androidinteractionexperiment.base.WindowUtil;
+import com.r21nomi.androidinteractionexperiment.base.Item;
 
 import java.util.List;
 

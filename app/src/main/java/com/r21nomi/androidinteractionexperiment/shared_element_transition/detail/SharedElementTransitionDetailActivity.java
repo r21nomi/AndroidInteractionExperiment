@@ -17,13 +17,13 @@ import android.widget.ImageView;
 
 import com.github.r21nomi.androidrpinterpolator.Easing;
 import com.github.r21nomi.androidrpinterpolator.RPInterpolator;
-import com.r21nomi.androidinteractionexperiment.DeviceUtil;
+import com.r21nomi.androidinteractionexperiment.base.DeviceUtil;
 import com.r21nomi.androidinteractionexperiment.R;
-import com.r21nomi.androidinteractionexperiment.ResourceUtil;
-import com.r21nomi.androidinteractionexperiment.WindowUtil;
-import com.r21nomi.androidinteractionexperiment.evaluator.HeightEvaluator;
-import com.r21nomi.androidinteractionexperiment.evaluator.WidthEvaluator;
-import com.r21nomi.androidinteractionexperiment.activity_transition.Item;
+import com.r21nomi.androidinteractionexperiment.base.ResourceUtil;
+import com.r21nomi.androidinteractionexperiment.base.WindowUtil;
+import com.r21nomi.androidinteractionexperiment.base.evaluator.HeightEvaluator;
+import com.r21nomi.androidinteractionexperiment.base.evaluator.WidthEvaluator;
+import com.r21nomi.androidinteractionexperiment.base.Item;
 
 import java.util.ArrayList;
 import java.util.List;

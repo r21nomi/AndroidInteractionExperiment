@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment.view;
+package com.r21nomi.androidinteractionexperiment.base.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -23,10 +23,11 @@ public class SquareImageView extends ImageView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (widthMeasureSpec > heightMeasureSpec) {
-            super.onMeasure(heightMeasureSpec, heightMeasureSpec);
-        } else {
-            super.onMeasure(widthMeasureSpec, widthMeasureSpec);
-        }
+//        if (widthMeasureSpec > heightMeasureSpec) {
+//            super.onMeasure(heightMeasureSpec, heightMeasureSpec);
+//        } else {
+//            super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+//        }
+        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
     }
 }

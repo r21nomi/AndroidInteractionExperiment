@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment;
+package com.r21nomi.androidinteractionexperiment.base;
 
 import android.app.Activity;
 import android.content.Context;

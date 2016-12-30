@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.r21nomi.androidinteractionexperiment.R;
-import com.r21nomi.androidinteractionexperiment.ResourceUtil;
+import com.r21nomi.androidinteractionexperiment.base.ResourceUtil;
 import com.r21nomi.androidinteractionexperiment.activity_transition.detail.ActivityTransitionDetailActivity;
+import com.r21nomi.androidinteractionexperiment.base.Item;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +30,15 @@ public class ActivityTransitionActivity extends AppCompatActivity {
                 startDetail(thumbView, item);
             }
         });
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return 1;
+            }
+        });
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
     }
 
