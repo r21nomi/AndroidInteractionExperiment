@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".activity_transition.ActivityTransitionActivity" />
         <activity android:name=".activity_transition.detail.ActivityTransitionDetailActivity" />
+        <activity android:name=".activity_transition_viewpager.ActivityTransitionViewPagerActivity" />
+        <activity android:name=".activity_transition_viewpager.detail.ActivityTransitionViewPagerDetailActivity" />
         <activity android:name=".transition.TransitionActivity" />
         <activity android:name=".shared_element_transition.SharedElementTransitionActivity" />
         <activity android:name=".shared_element_transition.detail.SharedElementTransitionDetailActivity" />

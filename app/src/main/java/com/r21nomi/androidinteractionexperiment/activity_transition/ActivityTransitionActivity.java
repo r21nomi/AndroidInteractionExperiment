@@ -2,6 +2,7 @@ package com.r21nomi.androidinteractionexperiment.activity_transition;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -14,6 +15,7 @@ import android.view.View;
 import com.r21nomi.androidinteractionexperiment.R;
 import com.r21nomi.androidinteractionexperiment.activity_transition.detail.ActivityTransitionDetailActivity;
 import com.r21nomi.androidinteractionexperiment.base.Item;
+import com.r21nomi.androidinteractionexperiment.base.ItemCardAdapter;
 import com.r21nomi.androidinteractionexperiment.base.ResourceUtil;
 import com.r21nomi.androidinteractionexperiment.base.view.ViewUtil;
 
@@ -23,16 +25,18 @@ import java.util.List;
 
 public class ActivityTransitionActivity extends AppCompatActivity {
 
+    private ItemCardAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transition);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        ItemAdapter adapter = new ItemAdapter(getDataSet(), new ItemAdapter.Listener() {
+        mAdapter = new ItemCardAdapter(getDataSet(), new ItemCardAdapter.Listener() {
             @Override
-            public void onClick(View thumbView, Item item) {
-                startDetail(thumbView, item);
+            public void onClick(View thumbView, int position) {
+                startDetail(thumbView, position);
             }
         });
 
@@ -44,13 +48,14 @@ public class ActivityTransitionActivity extends AppCompatActivity {
             }
         });
         recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void startDetail(View thumbView, Item item) {
+    private void startDetail(View thumbView, int position) {
         String sharedElementViewName = "shared_element_view";
-        Intent intent = ActivityTransitionDetailActivity.createIntent(this, sharedElementViewName, item.getThumb());
+        Uri uri = mAdapter.getDataSet().get(position).getThumb();
+        Intent intent = ActivityTransitionDetailActivity.createIntent(this, sharedElementViewName, uri);
 
         View statusBar = findViewById(android.R.id.statusBarBackground);
         View navigationBar = findViewById(android.R.id.navigationBarBackground);

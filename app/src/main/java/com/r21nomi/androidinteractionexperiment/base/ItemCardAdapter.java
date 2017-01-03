@@ -1,4 +1,4 @@
-package com.r21nomi.androidinteractionexperiment.activity_transition;
+package com.r21nomi.androidinteractionexperiment.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.r21nomi.androidinteractionexperiment.R;
-import com.r21nomi.androidinteractionexperiment.base.Item;
 
 import java.util.List;
 
@@ -17,12 +16,12 @@ import java.util.List;
  * Created by r21nomi on 2016/12/11.
  */
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
+public class ItemCardAdapter extends RecyclerView.Adapter<ItemCardAdapter.ViewHolder> {
 
     private List<Item> dataSet;
     private Listener listener;
 
-    public ItemAdapter(List<Item> dataSet, Listener listener) {
+    public ItemCardAdapter(List<Item> dataSet, Listener listener) {
         this.dataSet = dataSet;
         this.listener = listener;
     }
@@ -39,7 +38,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Item item = dataSet.get(position);
         holder.title.setText(item.getTitle());
         holder.description.setText(item.getDescription());
@@ -51,15 +50,19 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onClick(holder.thumb, item);
+                listener.onClick(holder.thumb, position);
             }
         });
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView thumb;
-        TextView title;
-        TextView description;
+    public List<Item> getDataSet() {
+        return dataSet;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView thumb;
+        public TextView title;
+        public TextView description;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -71,7 +74,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     }
 
     public interface Listener {
-        void onClick(View view, Item item);
+        void onClick(View view, int position);
     }
 }
 
