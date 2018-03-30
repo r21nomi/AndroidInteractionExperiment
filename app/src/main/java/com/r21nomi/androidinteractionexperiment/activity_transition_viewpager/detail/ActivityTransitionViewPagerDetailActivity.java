@@ -78,6 +78,7 @@ public class ActivityTransitionViewPagerDetailActivity extends AppCompatActivity
             supportPostponeEnterTransition();
             getWindow().setSharedElementEnterTransition(new CustomTransitionSet());
 
+
             // Set transition name to ActionBar.
             ViewUtil.getActionBar(this);
 

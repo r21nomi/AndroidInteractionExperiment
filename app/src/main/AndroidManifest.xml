@@ -22,6 +22,7 @@
         <activity android:name=".transition.TransitionActivity" />
         <activity android:name=".shared_element_transition.SharedElementTransitionActivity" />
         <activity android:name=".shared_element_transition.detail.SharedElementTransitionDetailActivity" />
+        <activity android:name=".fragment_transition.FragmentTransitionActivity" />
     </application>
 
 </manifest>
